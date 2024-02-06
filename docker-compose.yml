@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  db-test:
+    container_name: db_producto
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ms_product
+      POSTGRES_USER: omerSolutions
+      POSTGRES_PASSWORD: Telomere2010#
+    ports:
+      - "2100:2100"
+    expose:
+      - 2100
+    command: -p 2100

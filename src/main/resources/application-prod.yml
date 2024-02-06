@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${USERNAME_PROD}
+    password: ${PASSWORD_PROD}
+    url: jdbc:postgresql://${HOST_PROD}:${PORT_PROD}/${DATABASE_PROD}

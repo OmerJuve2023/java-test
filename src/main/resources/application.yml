@@ -1,0 +1,24 @@
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: java-challenge
+
+  profiles:
+    active: dev
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+
+  flyway:
+    locations: classpath:db/migration,classpath:db/testdata
+    baseline-on-migrate: true
+    clean-on-validation-error: true
+    clean-disabled: false
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
