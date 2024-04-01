@@ -20,12 +20,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Set up PostgreSQL
+        run: |
+          sudo apt-get update
+          sudo apt-get install postgresql postgresql-contrib
+
+      - name: Set up database
+        run: |
+          sudo -u postgres psql -c "CREATE DATABASE mydatabase;"
+          sudo -u postgres psql -c "CREATE USER myuser WITH PASSWORD 'mypassword';"
+          sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;"
+
+      - name: Set environment variables
+        env:
+          USERNAME_DEV: myuser
+          PASSWORD_DEV: mypassword
+          HOST_DEV: localhost
+          PORT_DEV: 5432
+          DATABASE_DEV: mydatabase
+        run: echo "Environment variables set"
+
+      - name: Build Spring Boot application
+        run: ./gradlew build
+
+      - name: Run Spring Boot application
+        run: java -jar build/libs/java-challenge.jar
