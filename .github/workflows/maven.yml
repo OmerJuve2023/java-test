@@ -11,17 +11,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: omerSolutions
-          POSTGRES_PASSWORD: Telomere2010#
-          POSTGRES_DB: ms_product
-        ports:
-          - 2100:2100
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
