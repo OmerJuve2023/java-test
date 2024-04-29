@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_DB: ms_product
       POSTGRES_USER: omerSolutions
-      POSTGRES_PASSWORD: Telomere2010#
+      POSTGRES_PASSWORD: Telomere2010
     ports:
       - "2100:2100"
     expose:

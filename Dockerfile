@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/java-test-1.0.0.jar java-test.jar
 EXPOSE 8080
+ADD target/java-test-1.0.0.jar java-test.jar
 ENTRYPOINT ["java","-jar","java-test.jar"]

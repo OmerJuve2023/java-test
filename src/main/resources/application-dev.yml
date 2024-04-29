@@ -1,6 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: fl0user
-    password: WYTux9OknNJ0
-    url: jdbc:postgresql://
+    username: ${USERNAME_DEV}
+    password: ${PASSWORD_DEV}
+    url: jdbc:postgresql://${HOST_DEV}:${PORT_DEV}/${DATABASE_DEV}
+#    username: omerSolutions
+#    password: Telomere2010
+#    url: jdbc:postgresql://localhost:2100/ms_product
