@@ -42,35 +42,31 @@ los valores reales estan en el archivo [.env](src/main/resources/.env)
 
 2. Creamos la base de datos db_product
 
-```dockerignore
-version: "3.8"
+```yaml
+  version: "3.9"
 services:
-db-test:
-container_name: db_producto
-image: postgres
-restart: always
-environment:
-POSTGRES_DB: ms_product
-POSTGRES_USER: omerSolutions
-POSTGRES_PASSWORD: Telomere2010#
-ports:
-- "2100:2100"
-expose:
-- 2100
-command: -p 2100 
+  db-test:
+    container_name: db_product
+    image: postgres
+    environment:
+      POSTGRES_DB: ms_product
+      POSTGRES_USER: omerSolutions
+      POSTGRES_PASSWORD: Telomere2010
+    ports:
+      - "2100:2100"
+    expose:
+      - 2100
+    command: -p 2100
 ```
 
 3. Creamos la imagen docker
 
 ```dockerfile
-FROM maven:3.8.5-openjdk-17 AS build
-COPY . .
-RUN mvn clean package -DskipTests
-
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/java-challenge-1.0.0.jar java-challenge.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","java-challenge.jar"]
+VOLUME /tmp
+EXPOSE 3000
+COPY target/java-test-1.0.0.jar java-test.jar
+ENTRYPOINT ["java","-jar","java-test.jar"]
 ```
 
 4. Construye la imagen Docker:

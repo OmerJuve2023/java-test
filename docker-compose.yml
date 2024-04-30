@@ -16,12 +16,14 @@ services:
   java-test:
     container_name: java-challenge
     image: pee-java-app:1.0.0
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
         - db-test
     environment:
-        - DATABASE_URL=jdbc:postgresql://db_product:2100/ms_product
-        - DATABASE_USERNAME=omerSolutions
-        - DATABASE_PASSWORD=Telomere2010
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://db_product:2100/ms_product
+        - SPRING_DATASOURCE_USERNAME=omerSolutions
+        - SPRING_DATASOURCE_PASSWORD=Telomere2010
