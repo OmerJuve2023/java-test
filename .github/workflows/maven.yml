@@ -19,5 +19,17 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+      - name: Set up environment variables
+        run: |
+          echo "USERNAME_DEV=omerSolutions" >> $GITHUB_ENV
+          echo "PASSWORD_DEV=Telomere2010" >> $GITHUB_ENV
+          echo "HOST_DEV=localhost" >> $GITHUB_ENV
+          echo "PORT_DEV=2100" >> $GITHUB_ENV
+          echo "DATABASE_DEV=ms_product" >> $GITHUB_ENV
       - name: Build with Maven
-        run: mvn test
+        run: |
+          mvn -Dspring.datasource.username=$USERNAME_DEV \
+              -Dspring.datasource.password=$PASSWORD_DEV \
+              -Dspring.datasource.url=jdbc:postgresql://$HOST_DEV:$PORT_DEV/$DATABASE_DEV \
+              test
+
