@@ -1,9 +1,8 @@
-version: "3.8"
+version: "3.9"
 services:
   db-test:
-    container_name: db_producto
+    container_name: db_product
     image: postgres
-    restart: always
     environment:
       POSTGRES_DB: ms_product
       POSTGRES_USER: omerSolutions
@@ -13,3 +12,16 @@ services:
     expose:
       - 2100
     command: -p 2100
+
+  java-test:
+    container_name: java-challenge
+    image: pee-java-app:1.0.0
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+        - db-test
+    environment:
+        - DATABASE_URL=jdbc:postgresql://db_product:2100/ms_product
+        - DATABASE_USERNAME=omerSolutions
+        - DATABASE_PASSWORD=Telomere2010
