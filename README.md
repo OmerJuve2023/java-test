@@ -30,7 +30,7 @@ spring:
 los valores reales estan en el archivo [.env](src/main/resources/.env)
 
 
-## Diseño de base de Datos
+## Diseño de base de Datos      
 
 ![img_1.png](img_1.png)
 
